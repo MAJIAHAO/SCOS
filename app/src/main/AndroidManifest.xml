@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.source.code.activity.scos" >
 
+    <!-- 声明权限 -->
+    <permission android:name="scos.permission.ACCESSSCOS" android:protectionLevel="dangerous"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,13 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".SCOSEntry" >
+        <activity android:name=".SCOSEntry"
+            android:exported="true">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".MainScreen" android:permission="scos.permission.ACCESSSCOS" >
+            <intent-filter>
+                <action android:name="scos.intent.action.SCOSMAIN" />
+                <category android:name="scos.intent.category.SCOSLAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginOrRegister">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
