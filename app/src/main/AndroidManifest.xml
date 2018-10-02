@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.source.code.activity.scos" >
+    package="es.source.code.activity.scos">
 
     <!-- 声明权限 -->
     <permission android:name="scos.permission.ACCESSSCOS" android:protectionLevel="dangerous"/>
@@ -14,12 +14,8 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".SCOSEntry"
             android:exported="true">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
-        <activity android:name=".MainScreen" android:permission="scos.permission.ACCESSSCOS" >
+        <!--<activity android:name=".MainScreen" android:permission="scos.permission.ACCESSSCOS" >
             <intent-filter>
                 <action android:name="scos.intent.action.SCOSMAIN" />
                 <category android:name="scos.intent.category.SCOSLAUNCHER" />
@@ -31,8 +27,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>-->
 
+        <activity android:name=".FoodView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
