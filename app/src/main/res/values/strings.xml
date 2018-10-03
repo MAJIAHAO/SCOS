@@ -1,3 +1,91 @@
 <resources>
-    <string name="app_name">SCOS</string>
+    <string name="app_name">点餐</string>
+
+    <!-- 各页面标题 -->
+    <string name="label_order">点餐</string>
+    <string name="label_form">订单</string>
+    <string name="label_account">账户</string>
+    <string name="label_help">帮助</string>
+    <string name="label_custom_order">查看订单</string>
+    <string name="label_food_detail">菜品详情</string>
+
+    <!-- 通用 -->
+    <string name="dialog_loading">载入中&#8230;</string>
+    <string name="unit_yuan">元</string>
+    <string name="btn_confirm">确认</string>
+    <string name="btn_cancel">取消</string>
+
+    <!-- 启动页 -->
+    <string name="toast_welcome">欢迎！</string>
+
+    <!-- 导航页 -->
+    <string name="text_order">点餐</string>
+    <string name="text_form">查看订单</string>
+    <string name="text_account">登录/注册</string>
+    <string name="text_help">系统帮助</string>
+    <string name="toast_new_account">欢迎您成为SCOS新用户</string>
+
+    <!-- 注册登录页面 -->
+    <string name="text_login">登录</string>
+    <string name="text_register">注册</string>
+    <string name="text_back">返回</string>
+    <string name="hint_account_name">请输入用户名</string>
+    <string name="hint_account_password">请输入密码</string>
+    <string name="error_account_edit">输入内容不符合规则</string>
+    <string name="error_account_empty">输入内容不能为空</string>
+    <string name="dialog_login">登录中&#8230;</string>
+    <string name="dialog_register">注册中&#8230;</string>
+    <string name="toast_account_not_valid">您的输入内容不规范，请输入英文字母和数字组成的账户名和密码</string>
+    <string name="toast_request_failed">请求失败</string>
+
+    <!-- 点餐页面 -->
+    <string name="text_cold_food">冷菜</string>
+    <string name="text_hot_food">热菜</string>
+    <string name="text_sea_food">海鲜</string>
+    <string name="text_drinking">酒水</string>
+    <string name="btn_order">来一份</string>
+    <string name="btn_cancel_order">不点了</string>
+    <string name="btn_empty">已售完</string>
+    <string name="menu_order">已点菜品</string>
+    <string name="menu_bill">查看订单</string>
+    <string name="menu_service">呼叫服务</string>
+    <string name="menu_auto_refresh_on">启动实时更新</string>
+    <string name="menu_auto_refresh_off">关闭实时更新</string>
+
+    <!-- 订单页面 -->
+    <string name="text_tab_order">未下菜单</string>
+    <string name="text_tab_bill">已下菜单</string>
+    <string name="btn_submit">提交订单</string>
+    <string name="btn_bill">结账</string>
+    <string name="text_food_amount">菜品总数：</string>
+    <string name="text_order_amount">订单总价：</string>
+    <string name="toast_old_user_bill">您好，老顾客，本次你可享受7折优惠</string>
+    <string name="dialog_pay">结账中&#8230;</string>
+
+    <!-- 详情页面 -->
+    <string name="text_remark_hint">请在下方输入备注：</string>
+
+    <!-- 帮助页面 -->
+    <string name="text_protocol">用户使用协议</string>
+    <string name="text_about">关于系统</string>
+    <string name="text_phone">电话人工帮助</string>
+    <string name="text_message">短信帮助</string>
+    <string name="text_email">邮件帮助</string>
+    <string name="phone_number">5556</string>
+    <string name="alert_phone">拨打电话？</string>
+    <string name="alert_message">发送短信？</string>
+    <string name="alert_email">发送邮件？</string>
+    <string name="sms_help">test scos helper</string>
+    <string name="sms_help_success">求助短信发送成功</string>
+    <string name="email_help_title">求助邮件</string>
+    <string name="email_help_content">这是一封来自客户的求助邮件</string>
+    <string name="email_help_success">求助邮件发送成功</string>
+    <string name="email_help_fail">求助邮件发送失败</string>
+    <string name="email_to">452705789@qq.com</string>
+    <string name="intent_email_name">新的邮件</string>
+
+    <!-- 更新通知 -->
+    <string name="notify_new_food_title">新品上架</string>
+    <string name="notify_close">关闭</string>
+
 </resources>
