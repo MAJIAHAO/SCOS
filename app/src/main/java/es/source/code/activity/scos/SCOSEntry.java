@@ -23,10 +23,6 @@ public class SCOSEntry extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.entry);
 
-        /*TextView param = (TextView) findViewById(R.id.mjh_title);
-        String text = getIntent().getStringExtra("source");
-        param.setText(text);*/
-
         //1 初始化  手势识别器
         mGestureDetector = new GestureDetector(this,new GestureDetector.SimpleOnGestureListener(){
             @Override

@@ -12,21 +12,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import es.source.code.activity.scos.FoodView;
 import es.source.code.activity.scos.R;
-import es.source.code.adapter.scos.MyAdapter;
+import es.source.code.adapter.scos.FoodOrderAdapter;
 
 @SuppressLint("ValidFragment")
-public class BlankFragment extends Fragment {
+public class FoodOrderFragment extends Fragment {
 
-    private int position;
+    private int location;
     private Activity activity;
     private Context context;
 
     @SuppressLint("ValidFragment")
-    public BlankFragment(int position, Context context) {
-        this.position = position;
+    public FoodOrderFragment(int location, Context context) {
+        this.location = location;
         this.context = context;
     }
 
@@ -46,9 +45,9 @@ public class BlankFragment extends Fragment {
         RecyclerView rv = rootView.findViewById(R.id.rv_recycler_view);
         rv.setHasFixedSize(true);
 
-        MyAdapter adapter = null;
+        FoodOrderAdapter adapter = null;
         FoodView f = new FoodView();
-        adapter = new MyAdapter(position,context);
+        adapter = new FoodOrderAdapter(location,context);
 
         rv.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

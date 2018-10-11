@@ -4,6 +4,8 @@
     <color name="logoScreenBackground">#F7F7F7</color>
     <color name="material_white_500">#ffffff</color>
 
+    <color name="white">#FFFFFF</color>
+    <color name="titleBg">#EF4E36</color>
     <color name="material_primary">#03A9F4</color>
     <color name="material_primary_dark">#0288D1</color>
     <color name="material_primary_light">#B3E5FC</color>

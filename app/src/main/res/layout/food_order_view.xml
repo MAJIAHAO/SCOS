@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodView">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#03A9F4"
+        android:elevation="6dp"
+        android:minHeight="60dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="#ffffff"
+        android:elevation="6dp"
+        android:minHeight="120dp"
+        app:tabIndicatorColor="#ff00ff"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#03A9F4"
+        app:tabTextColor="#d3d3d3" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tab_layout" />
+
+    <RelativeLayout
+        android:id="@+id/underBlock"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="#ffff">
+
+    <TextView
+        android:id="@+id/order_num"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@id/order_price"
+        android:gravity="left"
+        android:text="菜品总数："
+        android:textColor="#727272" />
+
+    <TextView
+        android:id="@+id/order_price"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@id/btn_submit"
+        android:gravity="left"
+        android:text="订单总价："
+        android:textColor="#727272" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="#03A9F4"
+        android:padding="10dp"
+        android:text="结账"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+    </RelativeLayout>
+</RelativeLayout>
