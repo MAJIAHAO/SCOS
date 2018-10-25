@@ -44,6 +44,7 @@ public class BlankFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
 
         RecyclerView rv = rootView.findViewById(R.id.rv_recycler_view);
+        rv.setLayoutManager(new LinearLayoutManager(context));
         rv.setHasFixedSize(true);
 
         MyAdapter adapter = null;
@@ -52,7 +53,6 @@ public class BlankFragment extends Fragment {
 
         rv.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
 
         return rootView;
     }

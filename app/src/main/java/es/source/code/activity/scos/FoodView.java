@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -120,6 +121,7 @@ public class FoodView extends AppCompatActivity {
         list.add(new BlankFragment(3,FoodView.this));
         //ViewPager的适配器
         adapter = new MyAdapter(getSupportFragmentManager());
+        //viewPager.setLayoutManager(new LinearLayoutManager(this));
         viewPager.setAdapter(adapter);
         //绑定
         tabLayout.setupWithViewPager(viewPager);

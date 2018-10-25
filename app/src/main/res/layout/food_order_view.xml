@@ -46,34 +46,41 @@
         android:layout_gravity="bottom"
         android:background="#ffff">
 
-    <TextView
-        android:id="@+id/order_num"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_above="@id/order_price"
-        android:gravity="left"
-        android:text="菜品总数："
-        android:textColor="#727272" />
+        <ProgressBar
+            android:id="@+id/pb"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/order_price"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_above="@id/btn_submit"
-        android:gravity="left"
-        android:text="订单总价："
-        android:textColor="#727272" />
+        <TextView
+            android:id="@+id/order_num"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_above="@id/order_price"
+            android:gravity="left"
+            android:text="菜品总数："
+            android:textColor="#727272" />
 
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="#03A9F4"
-        android:padding="10dp"
-        android:text="结账"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/order_price"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_above="@id/btn_submit"
+            android:gravity="left"
+            android:text="订单总价："
+            android:textColor="#727272" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="#03A9F4"
+            android:padding="10dp"
+            android:text="结账"
+            android:textColor="#fff"
+            android:textSize="18sp" />
     </RelativeLayout>
 </RelativeLayout>

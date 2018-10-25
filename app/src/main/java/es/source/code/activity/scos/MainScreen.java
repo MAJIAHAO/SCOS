@@ -46,7 +46,6 @@ public class MainScreen extends AppCompatActivity implements AdapterView.OnItemC
         User u = (User) getIntent().getSerializableExtra("user");
         if(u != null)
             user = u;
-        Log.d("CardView", "用户: " + user);
 
         //实例化gridView
         gridView = (GridView) findViewById(R.id.gridView);
@@ -106,7 +105,8 @@ public class MainScreen extends AppCompatActivity implements AdapterView.OnItemC
                 intent.setClass(MainScreen.this, LoginOrRegister.class);
                 startActivity(intent);
             } else {//系统帮助
-
+                intent.setClass(MainScreen.this, SCOSHelper.class);
+                startActivity(intent);
             }
         }else{
             if (position == 0) {//点菜系统
@@ -122,7 +122,8 @@ public class MainScreen extends AppCompatActivity implements AdapterView.OnItemC
                 intent.setClass(MainScreen.this, LoginOrRegister.class);
                 startActivity(intent);
             } else {//系统帮助
-
+                intent.setClass(MainScreen.this, SCOSHelper.class);
+                startActivity(intent);
             }
         }
     }

@@ -4,6 +4,11 @@
 
     <!-- 声明权限 -->
     <permission android:name="scos.permission.ACCESSSCOS" android:protectionLevel="dangerous"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -14,24 +19,20 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".SCOSEntry"
             android:exported="true">
-        </activity>
-        <activity android:name=".MainScreen" android:permission="scos.permission.ACCESSSCOS"
-            android:exported="true">
-            <intent-filter>
-                <!--<action android:name="scos.intent.action.SCOSMAIN" />
-                <category android:name="scos.intent.category.SCOSLAUNCHER" />-->
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".LoginOrRegister">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-
+        <activity android:name=".MainScreen" android:permission="scos.permission.ACCESSSCOS"
+            android:exported="true">
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginOrRegister">
+        </activity>
         <activity android:name=".FoodView">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +45,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".FoodOrderView">
+
+        </activity>
+        <activity android:name=".SCOSHelper">
 
         </activity>
     </application>

@@ -70,6 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.mTextView.setText(FoodView.foodList[location][position].getName());
         holder.priceTextView.setText(FoodView.foodList[location][position].getPrice() + "元");
         holder.imageView.setImageResource(FoodView.foodList[location][position].getId());
+        Log.d("CardView", "position: " + position + ",  location:" + location);
 
         //点击卡片的其他区域，进入到详细页面
         holder.mCardView.setOnClickListener(new View.OnClickListener() {

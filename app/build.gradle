@@ -21,6 +21,8 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    packagingOptions {
+    }
     buildToolsVersion '27.0.3'
 }
 
@@ -47,4 +49,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.github.bumptech.glide:glide:4.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    implementation files('libs/activation.jar')
+    implementation files('libs/mail.jar')
+    implementation files('libs/additionnal.jar')
 }

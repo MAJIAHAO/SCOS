@@ -1,10 +1,13 @@
 package es.source.code.activity.scos;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,8 +22,13 @@ import es.source.code.model.scos.User;
 public class LoginOrRegister extends AppCompatActivity {
 
     private Handler handler=null;
-
     private ProgressBar rectangleProgressBar = null;
+    //声明Sharedpreferenced对象
+    private SharedPreferences sp ;
+    private Button buttontest;
+    private Button buttonRegister;
+    private EditText name;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +36,24 @@ public class LoginOrRegister extends AppCompatActivity {
         setContentView(R.layout.login);
 
         rectangleProgressBar = (ProgressBar)findViewById(R.id.circleProgressBar);
+        buttontest = (Button) findViewById(R.id.btn_login);
+        buttonRegister = (Button) findViewById(R.id.btn_register);
+        name = (EditText)findViewById(R.id.et_userName);
+        password = (EditText)findViewById(R.id.et_password);
+
+        //检验是否已经登陆
+        sp = getSharedPreferences("User", Context.MODE_PRIVATE);
+        String userName = sp.getString("userName","null");
+        if(userName != "null"){
+            buttonRegister.setVisibility(View.GONE);
+            name =(EditText) findViewById (R.id.et_userName);
+            name.setText(sp.getString("userName", "null"));
+        }
 
         //登陆按钮
-        Button buttontest;
-        buttontest = (Button) findViewById(R.id.btn_login);
         buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText name =(EditText) findViewById (R.id.et_userName);
-                EditText password =(EditText) findViewById (R.id.et_password);
                 //启动登陆,进度条持续2秒钟后消失
                 rectangleProgressBar.setVisibility(View.VISIBLE);
                 new Thread() {
@@ -52,6 +69,7 @@ public class LoginOrRegister extends AppCompatActivity {
                     }
                 }.start();
                 //验证登录名和密码
+                Log.d("CardView", "name: " + name.getText().toString() + "pass" + password.getText().toString());
                 boolean isNameValid = isValid(name.getText().toString());
                 boolean isPasswordValid = isValid(password.getText().toString());
 
@@ -61,6 +79,15 @@ public class LoginOrRegister extends AppCompatActivity {
                     loginUser.setOldUser(true);
                     loginUser.setUserName(name.getText().toString());
                     loginUser.setPassword(password.getText().toString());
+
+                    //登录状态存储
+                    //获取到edit对象
+                    SharedPreferences.Editor edit = sp.edit();
+                    //通过editor对象写入数据
+                    edit.putString("userName",name.getText().toString());
+                    edit.putString("loginState","1");
+                    //提交数据存入到xml文件中
+                    edit.commit();
 
                     Toast.makeText(LoginOrRegister.this, "登陆成功", Toast.LENGTH_SHORT).show();
                     //跳转到一下页面
@@ -78,13 +105,11 @@ public class LoginOrRegister extends AppCompatActivity {
         });
 
         //注册按钮
-        Button buttonRegister;
-        buttontest = (Button) findViewById(R.id.btn_register);
-        buttontest.setOnClickListener(new View.OnClickListener() {
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText name =(EditText) findViewById (R.id.et_userName);
-                EditText password =(EditText) findViewById (R.id.et_password);
+                name =(EditText) findViewById (R.id.et_userName);
+                password =(EditText) findViewById (R.id.et_password);
                 //启动登陆,进度条持续2秒钟后消失
                 rectangleProgressBar.setVisibility(View.VISIBLE);
                 new Thread() {
@@ -110,6 +135,15 @@ public class LoginOrRegister extends AppCompatActivity {
                     loginUser.setUserName(name.getText().toString());
                     loginUser.setPassword(password.getText().toString());
 
+                    //登录状态存储
+                    //获取到edit对象
+                    SharedPreferences.Editor edit = sp.edit();
+                    //通过editor对象写入数据
+                    edit.putString("userName",name.getText().toString());
+                    edit.putString("loginState","1");
+                    //提交数据存入到xml文件中
+                    edit.commit();
+
                     Toast.makeText(LoginOrRegister.this, "注册成功", Toast.LENGTH_SHORT).show();
                     //跳转到一下页面
                     Intent intent = new Intent();
@@ -125,14 +159,19 @@ public class LoginOrRegister extends AppCompatActivity {
             }
         });
 
-
-
         //返回按钮
         Button buttonback;
         buttonback = (Button) findViewById(R.id.btn_back);
         buttonback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String loginState = sp.getString("loginState","0");
+                //获取到edit对象
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("loginState","0");
+                //提交数据存入到xml文件中
+                edit.commit();
+
                 //跳转到一下页面
                 Intent intent = new Intent();
                 //启动主页面
