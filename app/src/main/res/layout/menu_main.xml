@@ -21,4 +21,15 @@
         android:title="呼叫服务"
         android:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_4"
+        android:orderInCategory="80"
+        android:title="启动实时更新"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_5"
+        android:orderInCategory="80"
+        android:title="模拟新品上架"
+        android:showAsAction="never" />
 </menu>

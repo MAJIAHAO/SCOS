@@ -35,6 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView priceTextView;
         public ImageView imageView;
         public Button btnOrder;
+        public TextView left;
 
         public MyViewHolder(View v) {
             super(v);
@@ -44,6 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             priceTextView = v.findViewById(R.id.tv_blah);
             imageView = v.findViewById(R.id.iv_image);
             btnOrder = v.findViewById(R.id.btn_order);
+            left = v.findViewById(R.id.remain);
         }
     }
 
@@ -65,12 +67,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return vh;
     }
 
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.mTextView.setText(FoodView.foodList[location][position].getName());
         holder.priceTextView.setText(FoodView.foodList[location][position].getPrice() + "元");
         holder.imageView.setImageResource(FoodView.foodList[location][position].getId());
-        Log.d("CardView", "position: " + position + ",  location:" + location);
+        holder.left.setText("还剩：" + FoodView.foodList[location][position].getRemian() + "盘");
+        //Log.d("CardView", "position: " + position + ",  location:" + location);
 
         //点击卡片的其他区域，进入到详细页面
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +83,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 String name = FoodView.foodList[location][position].getName();
                 String price = FoodView.foodList[location][position].getPrice() + "元";
                 Intent mIntent=new Intent(context, FoodDetail.class);
+                mIntent.putExtra("from",0);
                 mIntent.putExtra("x",location);
                 mIntent.putExtra("y",position);
                 context.startActivity(mIntent);
@@ -128,5 +133,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public int getItemCount() {
         return FoodView.foodList.length;
+    }
+
+    public void refreshItem(int position){
+        notifyItemChanged(position);
     }
 }

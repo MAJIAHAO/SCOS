@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -24,14 +25,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".MainScreen" android:permission="scos.permission.ACCESSSCOS"
-            android:exported="true">
+
+
+        <!--android:permission="scos.permission.ACCESSSCOS"
+        android:exported="true"-->
+        <activity android:name=".MainScreen">
            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".LoginOrRegister">
+           <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
         <activity android:name=".FoodView">
             <!--<intent-filter>
@@ -50,6 +58,17 @@
         <activity android:name=".SCOSHelper">
 
         </activity>
+        <service android:name="es.source.code.service.scos.ServerObserverService"
+            android:process="es.source.code.observerservice"
+        />
+        <service android:name="es.source.code.service.scos.UpdateService"
+            />
+        <receiver android:name="es.source.code.br.scos.DeviceStartedListener" >
+            <intent-filter>
+                <!-- 开机广播 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

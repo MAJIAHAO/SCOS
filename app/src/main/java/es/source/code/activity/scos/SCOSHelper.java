@@ -9,7 +9,9 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
@@ -20,14 +22,21 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import es.source.code.model.scos.MailSenderInfo;
+import es.source.code.utils.scos.MessageEvent;
 import es.source.code.utils.scos.PermissionApply;
 import es.source.code.utils.scos.SimpleMailSender;
+
+import static org.greenrobot.eventbus.EventBus.TAG;
 
 
 public class SCOSHelper extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -46,6 +55,9 @@ public class SCOSHelper extends AppCompatActivity implements AdapterView.OnItemC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helper);
+
+        // 注册订阅者
+        EventBus.getDefault().register(this);
 
         //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS} , -1);
         //实例化gridView
@@ -85,30 +97,10 @@ public class SCOSHelper extends AppCompatActivity implements AdapterView.OnItemC
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "5554"));
             startActivity(intent);
         } else if (position == 3) {//短信帮助
-
-            /*apply.requestSmsPermission(new PermissionApply.OnPermissResponse() {
-                @Override
-                public void onPermissionSuccess() {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    *//* 创建自定义Action常数的Intent(给PendingIntent参数之用) *//*
-                    Intent itSend = new Intent(SMS_SEND_ACTIOIN);
-                    //itSend.putExtras(b);
-                    Intent itDeliver = new Intent(SMS_DELIVERED_ACTION);
-                    //itDeliver.putExtras(b);
-                    *//* deliveryIntent参数为送达后接受的广播信息PendingIntent *//*
-                    PendingIntent mDeliverPI = PendingIntent.getBroadcast(getApplicationContext(), (int) System.currentTimeMillis(), itDeliver, PendingIntent.FLAG_UPDATE_CURRENT);
-                    *//* sentIntent参数为传送后接受的广播信息PendingIntent *//*
-                    PendingIntent mSendPI = PendingIntent.getBroadcast(getApplicationContext(), (int) System.currentTimeMillis(), itSend, PendingIntent.FLAG_UPDATE_CURRENT);
-                    smsManager.sendTextMessage("5554", null, "test scos helper", mSendPI, mDeliverPI);
-
-                }
-            });*/
             SmsManager smsManager = SmsManager.getDefault();
             /* 创建自定义Action常数的Intent(给PendingIntent参数之用) */
             Intent itSend = new Intent(SMS_SEND_ACTIOIN);
-            //itSend.putExtras(b);
             Intent itDeliver = new Intent(SMS_DELIVERED_ACTION);
-            //itDeliver.putExtras(b);
             /* deliveryIntent参数为送达后接受的广播信息PendingIntent */
             PendingIntent mDeliverPI = PendingIntent.getBroadcast(getApplicationContext(), (int) System.currentTimeMillis(), itDeliver, PendingIntent.FLAG_UPDATE_CURRENT);
             /* sentIntent参数为传送后接受的广播信息PendingIntent */
@@ -119,6 +111,22 @@ public class SCOSHelper extends AppCompatActivity implements AdapterView.OnItemC
             sendEmail();
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN )
+    public void onMessageEvent(MessageEvent event) {
+        Log.i(TAG, "接收到EventBus " + event.getMessage());
+    }
+
+    Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg)
+        {
+            Bundle data = msg.getData();
+            boolean bool = data.getBoolean("value");
+            if(bool)
+                Toast.makeText(SCOSHelper.this, "求助邮件已发送成功", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     private List<Map<String, Object>> getData() {
         for (int i = 0; i < icon.length; i++) {
@@ -139,20 +147,23 @@ public class SCOSHelper extends AppCompatActivity implements AdapterView.OnItemC
                 mailInfo.setMailServerPort("25");
                 mailInfo.setValidate(true);
                 mailInfo.setUserName("279695176@qq.com");  //你的邮箱地址
-                mailInfo.setPassword("dglxwwlpsgkecbaj");//您的邮箱密码
+                mailInfo.setPassword("szjjqdxtcyfycabb");//您的邮箱密码
                 mailInfo.setFromAddress("279695176@qq.com");//和上面username的邮箱地址一致
                 mailInfo.setToAddress("15990062427@163.com");
-                mailInfo.setSubject("test");
+                mailInfo.setSubject("hello world");
                 mailInfo.setContent("hello world");
 
                 SimpleMailSender sms = new SimpleMailSender();
                 boolean b = sms.sendTextMail(mailInfo);//发送文体格式,返回是否发送成功的boolean类型\
                 Log.e("MainActivity", "MainActivity sendEmail()" + b);
-
                 if(b){
-                    Looper.prepare();
-                    Toast.makeText(SCOSHelper.this, "求助邮件已发送成功", Toast.LENGTH_SHORT).show();
-                    Looper.loop();
+                    Message msg = new Message();
+                    Bundle data = new Bundle();
+                    data.putBoolean("value", b);
+                    msg.setData(data);
+                    mHandler.sendMessage(msg);
+                    // 发布事件
+                    EventBus.getDefault().post(new MessageEvent("Hello EventBus!"));
                 }
             }
         }.start();

@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class BlankFragment extends Fragment {
     private int position;
     private Activity activity;
     private Context context;
+    private MyAdapter adapter = null;
 
     @SuppressLint("ValidFragment")
     public BlankFragment(int position, Context context) {
@@ -33,7 +35,6 @@ public class BlankFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -47,14 +48,16 @@ public class BlankFragment extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(context));
         rv.setHasFixedSize(true);
 
-        MyAdapter adapter = null;
         FoodView f = new FoodView();
         adapter = new MyAdapter(position,context);
 
         rv.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-
+        Log.i("test", "查看新页面" + rootView + ",position" + position);
         return rootView;
     }
 
+    public void refreshItem(int position){
+        adapter.refreshItem(position);
+    }
 }

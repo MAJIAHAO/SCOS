@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import es.source.code.model.scos.Food;
 import es.source.code.model.scos.Position;
 
 import static es.source.code.activity.scos.R.drawable.re1;
@@ -24,6 +25,9 @@ public class FoodDetail extends AppCompatActivity {
     private GestureDetector mGestureDetector;
     int x;
     int y;
+    int from;
+    private Food newFood;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +38,10 @@ public class FoodDetail extends AppCompatActivity {
         imageView = findViewById(R.id.iv_food);
         btnOrder = findViewById(R.id.btn_order);
 
+        from =  getIntent().getIntExtra("from", 0);
         x = getIntent().getIntExtra("x", 0);
         y = getIntent().getIntExtra("y", 0);
+        newFood = (Food) getIntent().getSerializableExtra("food");
 
         if(FoodView.foodList[x][y].getIsOrdered() == 0){//未点
             btnOrder.setText("点餐");
@@ -98,10 +104,15 @@ public class FoodDetail extends AppCompatActivity {
                 }
             }
         });
-
-        nameTextView.setText(FoodView.foodList[x][y].getName());
-        priceTextView.setText(FoodView.foodList[x][y].getPrice() + "元");
-        imageView.setImageResource(FoodView.foodList[x][y].getId());
+        if(from == 0){
+            nameTextView.setText(FoodView.foodList[x][y].getName());
+            priceTextView.setText(FoodView.foodList[x][y].getPrice() + "元");
+            imageView.setImageResource(FoodView.foodList[x][y].getId());
+        }else{
+            nameTextView.setText(newFood.getName());
+            priceTextView.setText(newFood.getPrice() + "元");
+            imageView.setImageResource(newFood.getId());
+        }
     }
 
     public  void next(View view){

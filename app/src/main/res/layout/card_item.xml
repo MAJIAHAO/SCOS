@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="120dp" >
 
-    <android.support.v7.widget.CardView
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
         android:layout_height="110dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         card_view:cardCornerRadius="4dp"
         card_view:elevation="14dp">
 
@@ -18,51 +18,58 @@
             android:background="#EEEEEE">
 
             <ImageView
-                android:scaleType="centerCrop"
                 android:id="@+id/iv_image"
-                android:layout_height="180dp"
                 android:layout_width="120dp"
-                android:paddingLeft="15dp">
-            </ImageView>
+                android:layout_height="180dp"
+                android:paddingLeft="15dp"
+                android:scaleType="centerCrop"></ImageView>
 
             <TextView
                 android:id="@+id/tv_text"
-                android:layout_toRightOf ="@+id/iv_image"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="133dp"
+                android:gravity="left"
+                android:paddingTop="10dp"
                 android:text="香辣蟹"
-                android:layout_marginLeft="15dp"
-                android:paddingTop="23dp"
-                android:textSize="18sp"
-                android:gravity="left" >
-            </TextView>
+                android:textSize="18sp"></TextView>
 
             <TextView
                 android:id="@+id/tv_blah"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="30元"
-                android:paddingTop="6dp"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/tv_text"
-                android:textSize="15sp"
+                android:layout_alignStart="@+id/tv_text"
+                android:layout_centerVertical="true"
                 android:gravity="left"
-                android:layout_toRightOf="@+id/iv_image"
-                android:layout_toEndOf="@+id/iv_image">
-            </TextView>
+                android:paddingTop="6dp"
+                android:text="30元"
+                android:textSize="15sp"></TextView>
 
             <Button
                 android:id="@+id/btn_order"
                 android:layout_width="65dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="145dp"
-                android:layout_toRightOf="@+id/iv_image"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:layout_marginEnd="32dp"
                 android:background="#03A9F4"
                 android:padding="10dp"
                 android:text="点餐"
                 android:textColor="#fff"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/remain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tv_text"
+                android:layout_below="@+id/btn_order"
+                android:text="还剩：10盘"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold"
+                android:visibility="visible" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
